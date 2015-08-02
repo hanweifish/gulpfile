@@ -35,8 +35,16 @@ fs.readdirSync(path.resolve(__dirname, 'gulp')).forEach(function(file) {
  * gulp serve
  * starts browserSync and starts watch
  */
-gulp.task('serve', ['server', 'styles', 'javascript', 'inject'], function() {
-    gulp.start('watch');
+gulp.task('serve', ['clean'], function() {
+    gulp.start('server');
+    runSequence('styles', 'javascript', 'inject', 'watch');
+});
+
+/**
+ * gulp serve:dist
+ */
+gulp.task('serve:dist', ['clean', 'server:dist'], function() {
+    runSequence('styles', 'javascript', 'inject', 'others', 'build');
 });
 
 }());

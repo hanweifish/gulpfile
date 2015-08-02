@@ -44,7 +44,8 @@
                     conditionals: true
                 }))
                 .pipe(htmlFilter.restore)
-                .pipe(gulp.dest(config.dist + '/'));
+                .pipe(gulp.dest(config.dist + '/'))
+                .pipe(browserSync.reload({stream:true}));
 
         });
 

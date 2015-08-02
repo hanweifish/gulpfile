@@ -1,1 +1,0 @@
-"use strict";!function(){function o(o){var n="hi2";o(n);var c;for(c=0;3>c;c++){var i=c;console.log(i)}}o(function(o){console.log(o)})}(),console.log("in three4"),function(){console.log("in two2")}();

@@ -36,6 +36,13 @@
                 }
             });
 
+            // watch html
+            gulp.watch([
+                config.src + '/**/*.html'
+            ], function(e) {
+                gulp.start('inject');
+            });
+
         });
 
     }
