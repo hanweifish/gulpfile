@@ -10,7 +10,7 @@
     module.exports = function(config) {
 
         gulp.task('others', ['assets', 'images'], function() {
-            browserSync.reload();
+            browserSync.reload({stream:true});
         });
         
         /**
@@ -35,8 +35,15 @@
                 config.src + '/images/**/*.*'
             ]);
 
+            var imageminOpts = {
+                optimizationLevel: 3,
+                progressive: true,
+                interlaced: true
+            };
+
             return imageFiles
-                .pipe(gulp.dest(config.dist + '/images'));
+                .pipe($.cache($.imagemin(imageminOpts)))
+                .pipe(gulp.dest(config.dist + '/images'))
         });
 
     }
