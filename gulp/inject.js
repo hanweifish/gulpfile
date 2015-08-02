@@ -5,11 +5,13 @@
     var gulp = require('gulp');
     var $ = require('gulp-load-plugins')();
     var browserSync = require('browser-sync');
+    var wiredep = require('wiredep').stream;
 
     module.exports = function(config) {
         
         /**
          * Inject into .tmp/index.html
+         * bower wiredep
          */
         gulp.task('inject', function() {
             var index = gulp.src([
@@ -29,9 +31,14 @@
                 addRootSlash: false
             };
 
+            var wiredepOpt = {
+                directory: 'bower_components'
+            };
+
             return index
                 .pipe($.inject(jsFiles, injectOpts))
                 .pipe($.inject(cssFiles, injectOpts))
+                .pipe(wiredep(wiredepOpt))
                 .pipe(gulp.dest(config.tmp))
                 .pipe(browserSync.reload({stream: true}));
         });

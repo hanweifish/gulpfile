@@ -43,6 +43,13 @@
                 gulp.start('inject');
             });
 
+            // bower.json
+            gulp.watch([
+                'bower.json'
+            ], function(e) {
+                gulp.start('inject');
+            });
+
         });
 
     }
