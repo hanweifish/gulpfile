@@ -6,6 +6,7 @@
     var $ = require('gulp-load-plugins')();
     var browserSync = require('browser-sync');
     var runSequence = require('run-sequence');
+    var util = require('util');
 
     module.exports = function(config) {
         
@@ -15,9 +16,10 @@
         gulp.task('watch', function() {
 
             // watch scss
-            gulp.watch([
+            $.watch([
                 config.src + '/**/*.scss'
             ], function(e) {
+                console.log(util.inspect(arguments));
                 if (e.type === 'changed') {
                     gulp.start('styles');
                 } else {
@@ -26,7 +28,7 @@
             });
 
             // watch js
-            gulp.watch([
+            $.watch([
                 config.src + '/**/*.js'
             ], function(e) {
                 if (e.type === 'changed') {
@@ -37,14 +39,14 @@
             });
 
             // watch html
-            gulp.watch([
+            $.watch([
                 config.src + '/**/*.html'
             ], function(e) {
                 gulp.start('inject');
             });
 
             // bower.json
-            gulp.watch([
+            $.watch([
                 'bower.json'
             ], function(e) {
                 gulp.start('inject');
