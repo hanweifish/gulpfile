@@ -13,7 +13,7 @@
          * Starts a browserSync server
          */
         gulp.task('server', function() {
-            startBrowserSync([config.tmp]);
+            startBrowserSync([config.tmp, config.src]);
         });
 
         gulp.task('server:dist', function() {

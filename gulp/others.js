@@ -14,7 +14,7 @@
         });
         
         /**
-         * Moves assets to .tmp
+         * Moves assets to dist/
          */
         gulp.task('assets', function() {
             var otherFiles = gulp.src([
@@ -24,11 +24,11 @@
             ]);
 
             return otherFiles
-                .pipe(gulp.dest(config.tmp));
+                .pipe(gulp.dest(config.dist));
         });
 
         /**
-         * Moves images to .tmp
+         * Moves images to dist/
          */
         gulp.task('images', function() {
             var imageFiles = gulp.src([
@@ -36,7 +36,7 @@
             ]);
 
             return imageFiles
-                .pipe(gulp.dest(config.tmp + '/images'));
+                .pipe(gulp.dest(config.dist + '/images'));
         });
 
     }

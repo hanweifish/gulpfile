@@ -9,14 +9,15 @@
     module.exports = function(config) {
         
         /**
-         * Build .tmp to dist
+         * Build into dist
+         * uses .tmp/index.html to build dist folder
          */
         gulp.task('build', function() {
 
             var assets;
-            var cssFilter = $.filter('**/*.css');
-            var jsFilter = $.filter('**/*.js');
-            var htmlFilter = $.filter('*.html');
+            var cssFilter = $.filter(['**/*.css'], {restore: true});
+            var jsFilter = $.filter(['**/*.js'], {restore: true});
+            var htmlFilter = $.filter(['*.html'], {restore: true});
 
             return gulp.src(config.tmp + '/*.html')
                 // all assets in index.html
@@ -25,16 +26,16 @@
                 //js
                 .pipe(jsFilter)
                 .pipe($.uglify({ preserveComments: 'some'})).on('error', config.errorHandler('Uglify'))
-                .pipe(jsFilter.restore())
-                // css
+                .pipe(jsFilter.restore)
+                // // css
                 .pipe(cssFilter)
                 .pipe($.csso())
-                .pipe(cssFilter.restore())
-                // all
+                .pipe(cssFilter.restore)
+                // // all
                 .pipe(assets.restore())
                 .pipe($.useref())
                 .pipe($.revReplace())
-                // html
+                // // html
                 .pipe(htmlFilter)
                 .pipe($.minifyHtml({
                     empty: true,
@@ -42,7 +43,7 @@
                     quotes: true,
                     conditionals: true
                 }))
-                .pipe(htmlFilter.restore())
+                .pipe(htmlFilter.restore)
                 .pipe(gulp.dest(config.dist + '/'));
 
         });
