@@ -12,7 +12,7 @@
 
         /**
          * convert scss to css
-         * move converted css into .tmp/styles
+         * move converted css into .tmp/styles/index.css
          */
         gulp.task('styles', function() {
             var sassOptions = {

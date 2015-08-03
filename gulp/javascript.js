@@ -10,6 +10,9 @@
 
     module.exports = function(config) {
 
+        /**
+         * compiles all javascript in src into .tmp/compiled.js
+         */
         gulp.task('javascript', function() {
             var jsFiles = gulp.src([
                 config.src + '/**/*.js'

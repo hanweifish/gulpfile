@@ -15,13 +15,15 @@
          */
         gulp.task('inject', function() {
             var index = gulp.src([
-                config.src + '/*.html'
+                config.tmp + '/*.html'
             ]);
 
+            // there should be only one js file in .tmp, compiled from javascript task
             var jsFiles = gulp.src([
                 config.tmp + '/**/*.js'
             ], {read: false});
 
+            // there should only be one css file in .tmp, compiled from styles task
             var cssFiles = gulp.src([
                 config.tmp + '/**/*.css'
             ], {read: false});
@@ -41,6 +43,13 @@
                 .pipe(wiredep(wiredepOpt))
                 .pipe(gulp.dest(config.tmp))
                 .pipe(browserSync.reload({stream: true}));
+        });
+
+        gulp.task('inject:moveindex', function() {
+            return gulp.src([
+                    config.src + '/*.html'
+                ])
+                .pipe(gulp.dest(config.tmp));
         });
 
     }
