@@ -15,7 +15,7 @@
          */
         gulp.task('watch', function() {
 
-            // watch scss
+            // watch .scss
             $.watch([
                 config.src + '/**/*.scss'
             ], function(e) {
@@ -27,7 +27,7 @@
                 }
             });
 
-            // watch js
+            // watch .js
             $.watch([
                 config.src + '/**/*.js'
             ], function(e) {
@@ -43,6 +43,13 @@
                 config.src + '/*.html'
             ], function(e) {
                 runSequence('inject:moveindex', 'inject');
+            });
+
+            // template cache
+            $.watch([
+                config.src + '/**/*.tpl.html'
+            ], function(e) {
+                runSequence('inject');
             });
 
             // bower.json

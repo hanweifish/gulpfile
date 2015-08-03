@@ -37,14 +37,14 @@
      */
     gulp.task('serve', function() {
         gulp.start('server');
-        runSequence('clean', 'inject:moveindex', ['styles', 'javascript'], 'inject', 'watch');
+        runSequence('clean', 'inject:moveindex', ['styles', 'javascript', 'templateCache'], 'inject', 'watch');
     });
 
     /**
      * gulp serve:dist
      */
     gulp.task('serve:dist', function() {
-        runSequence('clean', 'inject:moveindex', ['styles', 'javascript', 'others'], 'inject', 'build', 'server:dist');
+        runSequence('clean', 'inject:moveindex', ['styles', 'javascript', 'others', 'templateCache'], 'inject', 'build', 'server:dist');
     });
 
 }());
