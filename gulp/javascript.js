@@ -16,7 +16,9 @@
         gulp.task('javascript', function() {
             var jsFiles = gulp.src([
                 config.src + '/**/*.js'
-            ]);
+            ])
+            .pipe($.angularFilesort()).on('error', config.errorHandler('AngularFilesort'));
+
 
             return jsFiles
                 .pipe($.sourcemaps.init())
