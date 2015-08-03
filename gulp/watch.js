@@ -38,11 +38,11 @@
                 }
             });
 
-            // watch html
+            // index.html
             $.watch([
-                config.src + '/**/*.html'
+                config.src + '/*.html'
             ], function(e) {
-                gulp.start('inject');
+                runSequence('inject:moveindex', 'inject');
             });
 
             // bower.json

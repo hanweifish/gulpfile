@@ -17,10 +17,14 @@
         <!-- endinject -->
     <!-- endbuild -->
 </head>
-<body style="width: 100%; height: 100%;">
+<body style="width: 100%; height: 100%;" ng-app="app">
 
-    <div class="animated fadeInDown" style="margin-top: 150px; text-align:center;">
+    <div class="animated fadeInDown" style="margin-top: 150px; text-align:center;"
+        ng-controller="AppCtrl">
         <img src="images/gulp.png" style="height: 300px;"></img>
+        <div>
+            {{word}}
+        </div>
     </div>
     
     <!-- build:js(src) scripts/vendor.js -->
