@@ -56,6 +56,22 @@
 
     });
 
+    gulp.task('serve:webpack', function() {
+
+        gulp.start('server');
+
+        runSequence(
+            'clean', 
+            'inject:moveindex', 
+            // compile each respective into .tmp
+            ['styles', 'webpack', 'templateCache'], 
+            // inject each respective into index.html
+            'inject', 
+            'watch:webpack'
+        );
+
+    });
+
     /**
      * gulp serve:dist
      */

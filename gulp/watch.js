@@ -29,6 +29,15 @@
 
         gulp.task('watch:webpack', function() {
 
+            var watchTasks = [
+                'scss',
+                'webpack',
+                'index.html',
+                'templateCache',
+                'bower'
+            ];
+
+            generateWatchers(watchTasks);
 
         });
 
@@ -77,7 +86,7 @@
             'webpack': function() {
 
                 $.watch([
-                    config.src + '/index.js'
+                    config.src + '/**/*.js'
                 ], function(e) {
                     runSequence('webpack', 'inject');
                 });
