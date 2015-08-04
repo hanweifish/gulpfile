@@ -15,51 +15,109 @@
          */
         gulp.task('watch', function() {
 
-            // watch .scss
-            $.watch([
-                config.src + '/**/*.scss'
-            ], function(e) {
-                console.log(util.inspect(arguments));
-                if (e.type === 'changed') {
-                    gulp.start('styles');
-                } else {
-                    runSequence('styles', 'inject');
-                }
-            });
+            var watchTasks = [
+                'scss',
+                'javascript',
+                'index.html',
+                'templateCache',
+                'bower'
+            ];
 
-            // watch .js
-            $.watch([
-                config.src + '/**/*.js'
-            ], function(e) {
-                if (e.type === 'changed') {
-                    gulp.start('javascript');
-                } else {
-                    runSequence('javascript', 'inject');
-                }
-            });
-
-            // index.html
-            $.watch([
-                config.src + '/*.html'
-            ], function(e) {
-                runSequence('inject:moveindex', 'inject');
-            });
-
-            // template cache
-            $.watch([
-                config.src + '/**/*.tpl.html'
-            ], function(e) {
-                runSequence('inject');
-            });
-
-            // bower.json
-            $.watch([
-                'bower.json'
-            ], function(e) {
-                gulp.start('inject');
-            });
+            generateWatchers(watchTasks);
 
         });
+
+        gulp.task('watch:webpack', function() {
+
+
+        });
+
+        function generateWatchers(strArr) {
+
+            var i;
+            for (i = 0; i<strArr.length; i++) {
+                if (typeof strArr[i] !== 'string') continue;
+                if (watchers[strArr[i]] === undefined) continue;
+
+                watchers[strArr[i]]();
+            }
+
+        }
+
+        var watchers = {
+
+            'scss': function() {
+                // watch .scss
+                $.watch([
+                    config.src + '/**/*.scss'
+                ], function(e) {
+                    if (e.type === 'changed') {
+                        gulp.start('styles');
+                    } else {
+                        runSequence('styles', 'inject');
+                    }
+                });
+            },
+
+            'javascript': function() {
+
+                // watch .js
+                $.watch([
+                    config.src + '/**/*.js'
+                ], function(e) {
+                    if (e.type === 'changed') {
+                        gulp.start('javascript');
+                    } else {
+                        runSequence('javascript', 'inject');
+                    }
+                });
+
+            },
+
+            'webpack': function() {
+
+                $.watch([
+                    config.src + '/index.js'
+                ], function(e) {
+                    runSequence('webpack', 'inject');
+                });
+
+            },
+
+            'index.html': function() {
+
+                // index.html
+                $.watch([
+                    config.src + '/*.html'
+                ], function(e) {
+                    runSequence('inject:moveindex', 'inject');
+                });
+
+            },
+
+            'templateCache': function() {
+
+                // template cache
+                $.watch([
+                    config.src + '/**/*.tpl.html'
+                ], function(e) {
+                    runSequence('inject');
+                });
+
+            },
+
+            'bower': function() {
+
+                // bower.json
+                $.watch([
+                    'bower.json'
+                ], function(e) {
+                    gulp.start('inject');
+                });
+
+            }
+
+        }
 
     }
 
