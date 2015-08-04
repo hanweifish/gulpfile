@@ -21,6 +21,7 @@
         });
 
         function startBrowserSync(staticDirs) {
+
             var baseDir = staticDirs;
 
             browserSync.init({
@@ -31,6 +32,7 @@
                     }
                 }
             });
+
         }
 
     }

@@ -13,15 +13,20 @@
 
     // Configs
     var config = {
+
         src: gulpSrc,
+
         dist: 'dist',
+
         tmp: '.tmp',
+
         errorHandler: function(name) {
             return function(e) {
                 $.util.log($.util.colors.red(name + e.toString()));
                 this.emit('end');
             };
         }
+
     };
 
     // Load each gulp task in gulp folder
@@ -36,15 +41,33 @@
      * starts browserSync and starts watch
      */
     gulp.task('serve', function() {
+
         gulp.start('server');
-        runSequence('clean', 'inject:moveindex', ['styles', 'javascript', 'templateCache'], 'inject', 'watch');
+
+        runSequence(
+            'clean', 
+            'inject:moveindex', 
+            ['styles', 'javascript', 'templateCache'], 
+            'inject', 
+            'watch'
+        );
+
     });
 
     /**
      * gulp serve:dist
      */
     gulp.task('serve:dist', function() {
-        runSequence('clean', 'inject:moveindex', ['styles', 'javascript', 'others', 'templateCache'], 'inject', 'build', 'server:dist');
+
+        runSequence(
+            'clean', 
+            'inject:moveindex', 
+            ['styles', 'javascript', 'others', 'templateCache'], 
+            'inject', 
+            'build', 
+            'server:dist'
+        );
+
     });
 
 }());

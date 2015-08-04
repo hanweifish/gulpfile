@@ -13,10 +13,12 @@
          * Clean folders
          */
         gulp.task('clean', function(done) {
+
             del([
                 config.tmp,
                 config.dist
             ], done);
+
         });
 
     }

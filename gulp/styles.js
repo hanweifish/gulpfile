@@ -15,6 +15,7 @@
          * move converted css into .tmp/styles/index.css
          */
         gulp.task('styles', function() {
+
             var sassOptions = {
                 style: 'expanded'
             };
@@ -48,6 +49,7 @@
                 .pipe($.sourcemaps.write())
                 .pipe(gulp.dest(config.tmp))
                 .pipe(browserSync.reload({stream:true}));
+
         });
 
     };

@@ -14,6 +14,7 @@
          * compiles all javascript in src into .tmp/compiled.js
          */
         gulp.task('javascript', function() {
+
             var jsFiles = gulp.src([
                 config.src + '/**/*.js'
             ])
@@ -27,7 +28,8 @@
                 .pipe($.sourcemaps.write('.'))
                 .pipe(gulp.dest(config.tmp))
                 .pipe(browserSync.reload({stream:true}));
-        })
+
+        });
 
     }
 

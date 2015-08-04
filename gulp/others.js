@@ -17,6 +17,7 @@
          * Moves assets to dist/
          */
         gulp.task('assets', function() {
+
             var otherFiles = gulp.src([
                 config.src + '/**/*.*',
                 '!' + config.src + '/**/*.{css,html,js,scss}',
@@ -25,12 +26,14 @@
 
             return otherFiles
                 .pipe(gulp.dest(config.dist));
+
         });
 
         /**
          * Moves images to dist/
          */
         gulp.task('images', function() {
+
             var imageFiles = gulp.src([
                 config.src + '/images/**/*.*'
             ]);
@@ -44,6 +47,7 @@
             return imageFiles
                 .pipe($.cache($.imagemin(imageminOpts)))
                 .pipe(gulp.dest(config.dist + '/images'))
+
         });
 
     }
