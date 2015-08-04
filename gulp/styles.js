@@ -16,18 +16,14 @@
          */
         gulp.task('styles', function() {
 
-            var sassOptions = {
-                style: 'expanded'
-            };
-
             var scssFiles = gulp.src([
                 config.src + '/**/*.scss',
                 '!' + config.src + '/**/_*.scss'
             ], {read:false});
 
-            var index = gulp.src([
-                config.src + '/**/index.scss'
-            ]);
+            var sassOptions = {
+                style: 'expanded'
+            };
 
             var injectOpts = {
                 transform: function (filePath) {
@@ -41,7 +37,9 @@
             // inject scss files into index.scss
             // run sass and autoprefixer on index.scss
             // move index to .tmp
-            return index
+            return gulp.src([
+                    config.src + '/**/index.scss'
+                ])
                 .pipe($.inject(scssFiles, injectOpts))
                 .pipe($.sourcemaps.init())
                 .pipe($.sass(sassOptions)).on('error', config.errorHandler('Sass'))

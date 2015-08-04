@@ -15,23 +15,6 @@
          * bower wiredep
          */
         gulp.task('inject', function(done) {
-            runSequence('inject:default', 'inject:templateCache', done);
-        });
-
-        gulp.task('inject:moveindex', function() {
-
-            return gulp.src([
-                    config.src + '/*.html'
-                ])
-                .pipe(gulp.dest(config.tmp));
-
-        });
-
-        gulp.task('inject:default', function() {
-
-            var index = gulp.src([
-                config.tmp + '/*.html'
-            ]);
 
             // there should be only one js file in .tmp, compiled from javascript task
             var jsFiles = gulp.src([
@@ -49,34 +32,38 @@
                 addRootSlash: false
             };
 
-            var wiredepOpt = {
-                directory: 'bower_components'
-            };
+            var partialsInjectFile = gulp.src([
+                config.tmp + '/partials/templateCacheHtml.js'
+            ], {read:false});
 
-            return index
-                .pipe($.inject(jsFiles, injectOpts))
-                .pipe($.inject(cssFiles, injectOpts))
-                .pipe(wiredep(wiredepOpt))
-                .pipe(gulp.dest(config.tmp))
-                .pipe(browserSync.reload({stream: true}));
-
-        });
-
-        gulp.task('inject:templateCache', function() {
-
-            var partialsInjectFile = gulp.src(config.tmp + '/partials/templateCacheHtml.js', {read:false});
-            var partialsInjectOptions = {
+            var partialOpts = {
                 starttag: '<!-- inject:partials -->',
                 ignorePath: config.tmp,
                 addRootSlash: false
             };
 
+            var wiredepOpts = {
+                directory: 'bower_components'
+            };
+
             return gulp.src([
                     config.tmp + '/*.html'
                 ])
-                .pipe($.inject(partialsInjectFile, partialsInjectOptions))
+                .pipe($.inject(jsFiles, injectOpts))
+                .pipe($.inject(cssFiles, injectOpts))
+                .pipe($.inject(partialsInjectFile, partialOpts))
+                .pipe(wiredep(wiredepOpts))
                 .pipe(gulp.dest(config.tmp))
                 .pipe(browserSync.reload({stream: true}));
+
+        });
+
+        gulp.task('inject:moveindex', function() {
+
+            return gulp.src([
+                    config.src + '/*.html'
+                ])
+                .pipe(gulp.dest(config.tmp));
 
         });
 

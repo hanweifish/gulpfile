@@ -47,7 +47,9 @@
         runSequence(
             'clean', 
             'inject:moveindex', 
+            // compile each respective into .tmp
             ['styles', 'javascript', 'templateCache'], 
+            // inject each respective into index.html
             'inject', 
             'watch'
         );
@@ -62,8 +64,11 @@
         runSequence(
             'clean', 
             'inject:moveindex', 
-            ['styles', 'javascript', 'others', 'templateCache'], 
+            // compile each respective into .tmp
+            ['styles', 'javascript', 'templateCache', 'others'], 
+            // inject each respective into index.html
             'inject', 
+            // concat using index
             'build', 
             'server:dist'
         );
