@@ -10,7 +10,10 @@
         cache: true,
 
         entry: {
-            app: path.resolve(__dirname, 'src', 'index.js')
+            app: [
+                'webpack/hot/dev-server',
+                path.resolve(__dirname, 'src', 'index.js')
+            ]
         },
 
         module: {
@@ -18,7 +21,7 @@
                 {
                     test: /\.jsx?$/,
                     exclude: /(node_modules|bower_components)/,
-                    loder: 'babel'
+                    loader: 'babel'
                 }
             ]
         },
