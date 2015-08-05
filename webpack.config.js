@@ -11,7 +11,6 @@
 
         entry: {
             app: [
-                'webpack/hot/dev-server',
                 path.resolve(__dirname, 'src', 'index.js')
             ]
         },
