@@ -42,8 +42,6 @@
      */
     gulp.task('serve', function() {
 
-        gulp.start('server');
-
         runSequence(
             'clean', 
             'inject:moveindex', 
@@ -51,14 +49,13 @@
             ['styles', 'javascript', 'templateCache'], 
             // inject each respective into index.html
             'inject', 
-            'watch'
+            'watch',
+            'server'
         );
 
     });
 
     gulp.task('serve:webpack', function() {
-
-        gulp.start('server');
 
         runSequence(
             'clean', 
@@ -67,7 +64,8 @@
             ['styles', 'webpack', 'templateCache'], 
             // inject each respective into index.html
             'inject', 
-            'watch:webpack'
+            'watch:webpack',
+            'server'
         );
 
     });
