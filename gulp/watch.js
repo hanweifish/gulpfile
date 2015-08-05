@@ -86,7 +86,8 @@
             'webpack': function() {
 
                 $.watch([
-                    config.src + '/**/*.js'
+                    config.src + '/**/*.js',
+                    config.src + '/**/*.jsx'
                 ], function(e) {
                     runSequence('webpack', 'inject');
                 });
