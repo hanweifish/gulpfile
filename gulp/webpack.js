@@ -10,7 +10,7 @@
     var webpackConfigs = require('../webpack.config.js');
 
     module.exports = function(config) {
-        
+
         /**
          * Webpack
          */

@@ -8,9 +8,9 @@
     var del = require('del');
 
     module.exports = function(config) {
-        
+
         /**
-         * Clean folders
+         * Delete .tmp and dist/
          */
         gulp.task('clean', function(done) {
 

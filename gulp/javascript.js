@@ -20,7 +20,6 @@
             ])
             .pipe($.angularFilesort()).on('error', config.errorHandler('AngularFilesort'));
 
-
             return jsFiles
                 .pipe($.sourcemaps.init())
                 .pipe($.babel())

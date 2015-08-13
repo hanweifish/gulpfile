@@ -9,12 +9,15 @@
 
     module.exports = function(config) {
 
+        /**
+         * Moves assets and images to dist/
+         */
         gulp.task('others', ['assets', 'images'], function() {
             browserSync.reload({stream:true});
         });
-        
+
         /**
-         * Moves assets to dist/
+         * Moves everything that isn't .css .html .js or .scss to dist/
          */
         gulp.task('assets', function() {
 

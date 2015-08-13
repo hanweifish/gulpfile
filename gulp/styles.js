@@ -7,12 +7,12 @@
     var $ = require('gulp-load-plugins')();
     var browserSync = require('browser-sync');
 
-    // Export
     module.exports = function(config) {
 
         /**
          * convert scss to css
          * move converted css into .tmp/styles/index.css
+         * '_' prefixed scss files are ignored, must have been imported manually
          */
         gulp.task('styles', function() {
 

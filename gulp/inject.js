@@ -9,10 +9,9 @@
     var runSequence = require('run-sequence');
 
     module.exports = function(config) {
-        
+
         /**
-         * Inject into .tmp/index.html
-         * bower wiredep
+         * Inject all js from .tmp, css from .tmp, and bower into .tmp/index.html
          */
         gulp.task('inject', function(done) {
 
@@ -58,6 +57,9 @@
 
         });
 
+        /**
+         * Move index.html from src to .tmp
+         */
         gulp.task('inject:moveindex', function() {
 
             return gulp.src([

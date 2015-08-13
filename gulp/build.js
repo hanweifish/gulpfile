@@ -7,9 +7,8 @@
     var browserSync = require('browser-sync');
 
     module.exports = function(config) {
-        
+
         /**
-         * Build into dist
          * uses .tmp/index.html to build dist folder
          */
         gulp.task('build', function() {

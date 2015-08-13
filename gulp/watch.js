@@ -9,7 +9,7 @@
     var util = require('util');
 
     module.exports = function(config) {
-        
+
         /**
          * Watch task
          */
@@ -41,6 +41,11 @@
 
         });
 
+        /**
+         * Calls gulp-watch functions based on names of watchers passed in
+         *
+         * @param {String[]} strArr - Names of watchers to use
+         */
         function generateWatchers(strArr) {
 
             var i;
@@ -53,6 +58,11 @@
 
         }
 
+        /**
+         * gulp-watch functions
+         *
+         * @namespace
+         */
         var watchers = {
 
             'scss': function() {

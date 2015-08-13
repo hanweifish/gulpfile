@@ -8,6 +8,10 @@
 
     module.exports = function(config) {
 
+        /**
+         * minifies all .tpl.html files and create angular templateCache file
+         * move into .tmp/partials
+         */
         gulp.task('templateCache', function() {
 
             return gulp.src([
