@@ -20,6 +20,8 @@
 
         tmp: '.tmp',
 
+        configJson: './config.json',
+
         errorHandler: function(name) {
             return function(e) {
                 $.util.log($.util.colors.red(name + e.toString()));
@@ -43,12 +45,13 @@
     gulp.task('serve', function() {
 
         runSequence(
-            'clean', 
-            'inject:moveindex', 
+            'clean',
+            'env',
+            'inject:moveindex',
             // compile each respective into .tmp
-            ['styles', 'javascript', 'templateCache'], 
+            ['styles', 'javascript', 'templateCache'],
             // inject each respective into index.html
-            'inject', 
+            'inject',
             'watch',
             'server'
         );
@@ -58,12 +61,12 @@
     gulp.task('serve:webpack', function() {
 
         runSequence(
-            'clean', 
-            'inject:moveindex', 
+            'clean',
+            'inject:moveindex',
             // compile each respective into .tmp
-            ['styles', 'webpack', 'templateCache'], 
+            ['styles', 'webpack', 'templateCache'],
             // inject each respective into index.html
-            'inject', 
+            'inject',
             'watch:webpack',
             'server'
         );
@@ -76,14 +79,15 @@
     gulp.task('serve:dist', function() {
 
         runSequence(
-            'clean', 
-            'inject:moveindex', 
+            'clean',
+            'env',
+            'inject:moveindex',
             // compile each respective into .tmp
-            ['styles', 'javascript', 'templateCache', 'others'], 
+            ['styles', 'javascript', 'templateCache', 'others'],
             // inject each respective into index.html
-            'inject', 
+            'inject',
             // concat using index
-            'build', 
+            'build',
             'server:dist'
         );
 

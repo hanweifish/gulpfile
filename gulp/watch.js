@@ -20,7 +20,8 @@
                 'javascript',
                 'index.html',
                 'templateCache',
-                'bower'
+                'bower',
+                'env'
             ];
 
             generateWatchers(watchTasks);
@@ -133,6 +134,16 @@
                     'bower.json'
                 ], function(e) {
                     gulp.start('inject');
+                });
+
+            },
+
+            'env': function() {
+
+                $.watch([
+                    'config.json'
+                ], function(e) {
+                    runSequence('env', 'javascript', 'inject');
                 });
 
             }

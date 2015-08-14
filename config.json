@@ -1,0 +1,11 @@
+{
+    "dev": {
+        "test": "test string"
+    },
+    "production": {
+        "test": "test string"
+    },
+    "test": {
+        "test": "test string"
+    }
+}
